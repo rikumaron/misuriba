@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>ミスり場</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <header>
+      <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+        <div class="navbar-brand">
+          <h1>ミスり場</h1>
+        </div>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="ナビゲーションの切替">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+          <div class="collapse navbar-collapse" id="navbar">
+            <ul class="navbar-nav mr-auto">
+              <li class="nav-item ml-3">
+                <%= link_to "一覧ページ", root_path, :style=>"color:#ffffff;" %>
+              </li>
+              <li class="nav-item ml-3">
+                <%= link_to '新規作成ページ', new_question_path, :style=>"color:#ffffff;" %>
+              </li>
+              <li class="nav-item ml-3">
+                <%= link_to "ログアウト", destroy_user_session_path, method: :delete, :style=>"color:#ffffff;" %>
+              </li>
+            </ul>
+          </div>
+          <div id="nav-search">
+            <%= form_tag '/', :method => 'get' do %>
+              <p>
+                <%= text_field_tag :search, params[:search] %>
+                <%= submit_tag "検索", :title => nil %>
+              </p>
+            <% end %>
+          </div>
+        </nav>
+    </header>
+    <div class="container">
+      <% if flash[:notice] %>
+        <p class="text-success"><%= flash[:notice] %></p>
+      <% end %>
+      <% if flash[:alert] %>
+        <p class="text-danger"><%= flash[:alert] %></p>
+      <% end %>
+      
+      <%= yield %>
+    </div>
+  </body>
+</html>

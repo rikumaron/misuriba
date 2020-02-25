@@ -1,0 +1,25 @@
+<h2 class="mt-4">一覧ページ</h2>
+<h5>熟練の先輩達に助けてもらおう！</h5>
+<div class="row">
+    <div class="col-md-12">
+        <table class="table table-bordered">
+            <thead class="thead-light">
+                <tr>
+                    <th>質問</th>
+                    <th>質問の編集</th>
+                    <th>削除</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% @questions.each do |question| %>
+                    <tr>
+                        <td><%= link_to question.title, question_path(question) %></td>
+                        <td>[ <%= link_to '編集', edit_question_path(question) %> ]</td>
+                        <td>[ <%= link_to '削除', question_path(question), method: :delete, data:{ confirm: '削除します。本当によろしいですか？'} %> ]</td>
+                    </tr>
+                <% end %>
+            </tbody>
+        </table>
+    </div>
+    
+</div>
